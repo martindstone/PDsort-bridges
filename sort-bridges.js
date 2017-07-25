@@ -7,6 +7,7 @@ function main() {
 	});
 
 	$('#sort-button').click(function() {
+		$('.busy').show();
 		var bridges = [];
 		async.series([
 			function(callback) {
@@ -60,6 +61,7 @@ function main() {
 			},
 			function(callback) {
 				fetch('metadata_collections', null, function(data) {
+					$('.busy').hide();
 					$('#result').html(`<h3>All sorted!</h3><pre>${JSON.stringify(data, null, 4)}</pre>`);
 				});
 			}
